@@ -12,3 +12,10 @@ function addTodo() {
   };
   todoList.push(todoObject);
 }
+
+function doneTodo(todoId) {
+  const selectedTodoId = todoList.findIndex((myTodo) => myTodo.id == todoId);
+  todoList[selectedTodoIndex].isDone = true;
+
+  displayTodos();
+}
