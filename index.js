@@ -20,22 +20,34 @@ function doneTodo(todoId) {
   displayTodos();
 }
 
-function displayTodos(){
-
+function displayTodos() {
+    todoListElement.innerHTML = "";
+    document.querySelector("#myInput").value = "";
+  
     todoList.forEach((item) => {
-       const todoElement = document.createElement("li");
-        
-       todoElement.innerText = item.todoText;
-       todoElement.setAttribute("data-id", item.id)
-       if (item.isDone){
-           listElement.classList.add("checked")
-       } 
-
-       listElement.addEventListener("click", function(e){
-            const selectedId = e.target.getattribute("data-id");
-            doneTodo(selectedId);
-       })
-       
-       todoListElement.appendChild(listElement);
+      const listElement = document.createElement("li");
+  
+      listElement.innerText = item.todoText;
+      listElement.setAttribute("data-id", item.id);
+  
+      // if (item.isDone) {
+      //   listElement.classList.add("checked");
+      // }
+  
+      listElement.addEventListener("click", function (e) {
+        const selectedId = e.target.getAttribute("data-id");
+      //   e.target.style.textDecoration = "line-through"
+      //   console.log(e.target)
+      //   doneTodo(selectedId);
+          if (e.target.style.textDecoration == "line-through"){
+              e.target.style.textDecoration = "none"
+          } else{
+              e.target.style.textDecoration = "line-through"
+          }
+          
+      
+      });
+  
+      todoListElement.appendChild(listElement);
     });
-}
+  }
